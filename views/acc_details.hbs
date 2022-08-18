@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>RideWithUs</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/main.css" />
+	</head>
+	<body class="is-preload homepage">
+		<div id="page-wrapper">
+				<div id="header-wrapper">
+					<header id="header" class="container">
+							<nav id="nav">
+								<ul>
+									<li><a href="/index">Home</a></li>
+									<li><a href="/rent">Rent</a></li>
+									<li class="current" >
+										<a href="#">Account</a>
+										<ul>
+											<form action="/auth/details" method="post"><li ><button class="navlink">Details</button></li></form>		
+											<form action="/auth/history" method="post"><li ><button class="navlink">History</button></li></form>		
+										</ul>
+									</li>
+									<li><a href="/login">Log out</a></li>
+								</ul>
+							</nav>
+						<br>
+					</header>
+				</div>
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-4 col-12-medium">
+								<form action="/auth/saveaddress" method="post">
+									<label for="name">Name:</label>
+									<input readonly style="border: 1px solid black" type="text" id="name" value={{name}}>
+									<label  for="email">Email:</label>
+									<input readonly style="border: 1px solid black" type="text" id="email" value={{email}}>
+									<label for="address">Billing Address:</label>
+									<input required style="border: 1px solid black" type="text" name="address" id="address" value="{{address}}">
+									<button class="buttonedit">Save new address</button>
+									{{#if message}}
+    								<p style="color: rgb(0, 101, 0)">{{message}}</p>
+    								{{/if}}
+								</form>
+							</div>
+							<div class="col-8 col-12-medium imp-medium">
+									<div id="content">
+										<section class="last">
+											<img class="profileimg" src="/images/profile-image.jpg">
+										</section>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>DRÄXLMAIER Group</h3>
+										<ul class="style2">
+											<li><a href="https://ro.wikipedia.org/wiki/Dr%C3%A4xlmaier">Draexlmaier Group Wikipedia</a></li>
+											<li><a href="https://www.draexlmaier.com/en/news/press">Draexlmaier Group News</a></li>
+											<li><a href="https://www.draexlmaier.com/en/products">Draexlmaier Group Projects</a></li>
+											<li><a href="https://www.draexlmaier.com/en/">Draexlmaier Group Site</a></li>
+										</ul>
+									</section>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>Tuță Denis</h3>
+										<ul class="style2">
+											<li><a href="https://github.com/denisxoctavian">Github Page</a></li>
+											<li><a href="https://www.linkedin.com/in/denisoctavian/">Linkedin Page</a></li>
+											<li><a href="https://denisxoctavian.github.io/PersonalWebsite/">Personal Website</a></li>
+											<li><a href="https://www.instagram.com/denis.octavian20/">Instagram Page</a></li>
+										</ul>
+									</section>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>More about green energy</h3>
+										<ul class="style2">
+											<li><a href="https://www.twi-global.com/technical-knowledge/faqs/what-is-green-energy">What is green energy?</a></li>
+											
+										</ul>
+									</section>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget contact last">
+										<h3>Contact Us</h3>
+										<ul>
+											<li><a href="www.twitter.com" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="www.facebook.com" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="wwww.instagram.com" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										</ul>
+										<p>150, Calea Bucuresti<br />
+										 Pitesti, Romania<br />
+										(+40) 740 608 2188</p>
+									</section>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Denis. All rights reserved</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+	</body>
+</html>

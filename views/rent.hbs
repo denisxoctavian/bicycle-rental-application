@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>RideWithUs</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/css/main.css" />
+	</head>
+	<body onload="{{startDate}}" class="is-preload homepage">
+		<div id="page-wrapper">
+				<div id="header-wrapper">
+					<header id="header" class="container">
+							<nav id="nav">
+								<ul>
+									<li><a href="/index">Home</a></li>
+									<li class="current"><a href="/rent">Rent</a></li>
+									<li>
+										<a href="#">Account</a>
+										<ul>
+											<form action="/auth/details" method="post"><li ><button class="navlink">Details</button></li></form>		
+											<form action="/auth/history" method="post"><li ><button class="navlink">History</button></li></form>		
+										</ul>
+									</li>
+									<li><a href="/login">Log out</a></li>
+								</ul>
+							</nav>
+						<br>
+					</header>
+				</div>
+				<div id="banner-wrapper">
+					<!--Choose location menu -->
+					<div id="banner" class="box container">
+					<div id="div1" style= {{locations}}>
+					{{#if checkaddress}}
+    				<p style="font-size: 12px; text-align:center" class="alert alert-danger mt-4">{{checkaddress}}</p>
+    			    {{/if}}
+					<h1 style="text-align: center;">Choose your locations</h1>
+								<form action="/auth/locations" method="post">
+									<label for="from-location">From:</label>
+									<select name="from-location" id="from-location">
+									<label   for="to-location">To:</label>
+									<option   style="border: 1px solid black">Calea Bascov</option>
+									</select>
+									<label for="from-location">To:</label>
+									<select>
+									<option  style="border: 1px solid black">Centru Pitesti</option>
+									</select>
+									<button onclick = "replace()"  class="buttonedit">Continue</button>
+								</form>
+					</div>
+					<!--Choose vehicle menu -->
+					<div id="div2" style= {{vehicles}} > 
+						<h1 style="text-align: center;">Select a vehicle</h1>
+						<form action="/auth/vehicles" method="post">
+						<div class="table">
+									<div class="table-header">
+										<div class="header__item"><a class="header__item" id="name" >TYPE</a></div>
+										<div class="header__item"><a class="header__item" id="name" >DESCRIPTION</a></div>
+										<div class="header__item"><a class="header__item" id="name" >PRICE/MIN</a></div>
+										<div class="header__item"><a class="header__item" id="draws"></a></div>
+									</div>
+									<div class="table-content">	
+										{{#each result}}
+											<tr>
+											<div class="table-row">		
+											<td><div class="table-data">{{type}}</div></td>
+											<td><div class="table-data">{{description}}</div></td>
+											<td><div class="table-data">{{price_per_minute}}</div></td>
+											<div class="table-data"><button id={{id}} onclick="reply_click(this.id)" class="select-veh">Select</button></div>
+											</tr>
+										</div>
+										{{/each}}
+									</div>
+										<input id="vehId" name="vehId" style="display:none ;" type="text"  >
+								</div>
+								</form>
+							</div>
+								<!--Trip in progress  menu -->
+					<div id="div3" style= {{tripProgress}} >
+						<h1 style="text-align: center">Trip in progress</h1>
+						<center><img  style="width:100px;heigth:100px " src="/images/tripanim.gif"></center>
+						<p><b>Ride started at:</b></p><p id="startTime"></p>
+						<p><b>Max Speed:</b>15km/h</p>
+						<p><b>Pay per minute:</b><span id="payperminute">{{payPerMinute}}</span></p>
+						<form action="/auth/tripprogress" method="post">
+							<button  onclick="endRide()" class="buttonedit">End Trip</button>
+							<input id="start" name="start" style="display: none;">
+							<input id="stop" name="stop" style="display: none;">
+							<input id="amount" name="amount" style="display: none;">
+							<input type="number" id="payperminute" name="payperminute" style="display: none;" value={{payPerMinute}}>
+							<input id="distance" name="distance" style="display: none;">
+						</form>
+					</div>
+						<!--Trip details menu -->
+					<div id="div4" style= {{tripFinal}} >
+						<h1 style="text-align: center">Trip details</h1>
+						<center><img  style="width:100px;heigth:100px " src="/images/flag.png"></center>
+   						<p><b>Ride stopped at: </b></p><p>{{endride}}</p>
+						<p><b>Traveled distance:</b></p><p>{{distance}}</p>
+						<p><b>Gross amount:</b></p><p>{{amount}} lei</p>
+						<form action="/auth/tripfinal" method="post">
+						<button class="buttonedit">Pay</button>
+						</form>
+						</div>
+					<!--PDF -->
+					<div id="div6" style={{pdf}} >
+						<p style="text-align: center">Your PDF file is available on your device.</p>
+						<div style="position: center">
+					<form action="/auth/history" method="post">
+					<button class="buttonedit">Check history</button>
+					</form>
+				
+					</div>
+					</div>
+					</div>
+				</div>
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>DRÄXLMAIER Group</h3>
+										<ul class="style2">
+											<li><a href="https://ro.wikipedia.org/wiki/Dr%C3%A4xlmaier">Draexlmaier Group Wikipedia</a></li>
+											<li><a href="https://www.draexlmaier.com/en/news/press">Draexlmaier Group News</a></li>
+											<li><a href="https://www.draexlmaier.com/en/products">Draexlmaier Group Projects</a></li>
+											<li><a href="https://www.draexlmaier.com/en/">Draexlmaier Group Site</a></li>
+										</ul>
+									</section>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>Tuță Denis</h3>
+										<ul class="style2">
+											<li><a href="https://github.com/denisxoctavian">Github Page</a></li>
+											<li><a href="https://www.linkedin.com/in/denisoctavian/">Linkedin Page</a></li>
+											<li><a href="https://denisxoctavian.github.io/PersonalWebsite/">Personal Website</a></li>
+											<li><a href="https://www.instagram.com/denis.octavian20/">Instagram Page</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+									<section class="widget links">
+										<h3>More about green energy</h3>
+										<ul class="style2">
+											<li><a href="https://www.twi-global.com/technical-knowledge/faqs/what-is-green-energy">What is green energy?</a></li>
+											
+										</ul>
+									</section>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+
+									<section class="widget contact last">
+										<h3>Contact Us</h3>
+										<ul>
+											<li><a href="www.twitter.com" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="www.facebook.com" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="wwww.instagram.com" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										</ul>
+										<p>150, Calea Bucuresti<br />
+										Pitesti, Romania<br />
+										(+40) 740 608 2188</p>
+									</section>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Denis. All rights reserved</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+			<script src="/assets/js/distance.js"></script>
+			<script>
+			function reply_click(clicked_id)
+			{
+				
+				document.getElementById("vehId").value = clicked_id;
+			}
+			</script>
+	</body>
+</html>
